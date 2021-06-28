@@ -1,0 +1,3 @@
+Creacion de una API Restful con Node JS y express,
+instalando las dependencias de mysql y testeandola
+con postman
