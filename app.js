@@ -14,9 +14,6 @@ class Server {
 
     constructor () {
         this.app = express();
-        // declaramos una variable de entorno por si el puerto esta ocupado
-        //las variables de entorno se declaran con 'process' . 'env' -> de enviroment
-        //tambien podemos asignarle un valor a PUERTO con "set Puerto=4000" u otro valor
         this.port = process.env.PORT || 3050;
         this.middlewares();
         this.setRoutes();        
@@ -25,6 +22,7 @@ class Server {
     middlewares () {
         this.app.use(express.json());
         this.app.use(cors());
+        this.app.use(express.static('public'))
     }
 
     setRoutes () {

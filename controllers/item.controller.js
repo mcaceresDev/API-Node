@@ -26,7 +26,7 @@ class Item {
     addNew = (req,res)=>{ //Con el metodo post definimos la ruta (endpoint) y pasamos un callback
         let data = {nombre:req.body.nombre, precio:req.body.precio, stock:req.body.stock};//aca definimos los datos a enviar (crear)
         let sql = "INSERT INTO articulos SET ?";
-        connection.query(sql, data, function(error, results){
+        connection.query(sql, data, (error, results) => {
             if(error){
                 throw error;
             }
@@ -37,12 +37,11 @@ class Item {
     }
 
     updateItem = (req, res)=>{
-        let id = req.params.id;
-        let nombre = req.body.nombre; 
-        let precio = req.body.precio;
-        let stock = req.body.stock;
+        const { id } = req.params
+        const { nombre, precio, stock } = req.body
+        
         let sql = "UPDATE articulos SET nombre = ?, precio = ?, stock = ? WHERE id = ?";
-        connection.query(sql, [nombre, precio, stock, id], function(error, resultados){
+        connection.query(sql, [nombre, precio, stock, id], (error, resultados) => {
             if (error) {
                 throw error;
             } else {
@@ -52,7 +51,7 @@ class Item {
     }
 
     deleteItem = (req,res)=>{
-        connection.query('DELETE FROM articulos WHERE id = ?', [req.params.id], function(error, result){
+        connection.query('DELETE FROM articulos WHERE id = ?', [req.params.id], (error, result) => {
             if (error) {
                 throw error;
             } else {
